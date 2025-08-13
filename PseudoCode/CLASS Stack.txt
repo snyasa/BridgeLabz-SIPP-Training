@@ -1,0 +1,17 @@
+CLASS Stack{
+  
+create empty Stack<String>history
+current_text=""
+
+Method push(text){
+push text in history
+current_text=current_text+text
+}
+
+Method pop(){
+if history is not empty
+pop current_text from history
+else
+print stack is empty
+}
+}

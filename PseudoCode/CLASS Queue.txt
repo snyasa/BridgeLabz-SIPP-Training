@@ -1,0 +1,18 @@
+CLASS Queue{
+create empty emergencyQueue
+create empty normalQueue
+
+function enqueue(customer, type):
+    if type == "emergency":
+        add customer to emergencyQueue
+    else:
+        add customer to normalQueue
+
+function dequeue():
+    if emergencyQueue is not empty:
+        remove and return from emergencyQueue
+    else if normalQueue is not empty:
+        remove and return from normalQueue
+    else:
+        print "No customers waiting"
+}

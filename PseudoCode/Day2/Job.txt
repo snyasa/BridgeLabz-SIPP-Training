@@ -1,0 +1,39 @@
+
+CLASS Job
+    ATTRIBUTE id
+    ATTRIBUTE deadline
+    ATTRIBUTE processingTime
+
+    METHOD __init__(id, deadline, processingTime)
+        SET self.id = id
+        SET self.deadline = deadline
+        SET self.processingTime = processingTime
+
+
+
+CLASS PriorityQueue
+    ATTRIBUTE jobsList   
+
+    METHOD __init__()
+        SET jobsList = empty list
+
+    # Insert a job into the queue
+    METHOD enqueue(job)
+        ADD job to jobsList
+        SORT jobsList by (deadline ASC, processingTime ASC)
+
+    # Remove highest priority job
+    METHOD dequeue()
+        IF jobsList is empty
+            PRINT "No jobs available"
+            RETURN NULL
+        ELSE
+            RETURN and REMOVE first job from jobsList
+
+    # Peek highest priority job
+    METHOD peek()
+        IF jobsList is empty
+            RETURN NULL
+        ELSE
+            RETURN first job from jobsList
+

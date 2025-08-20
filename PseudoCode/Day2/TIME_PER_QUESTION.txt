@@ -1,0 +1,31 @@
+# Constants
+TIME_PER_QUESTION = 10      
+WARNING_TIME = 2            
+# Circular array to track time slots
+ARRAY timeSlots[10]           # Each slot = 1 second
+INITIALIZE all slots to 0     # 0 = not passed, 1 = passed
+currentSlot = 0
+
+# Function to start timer for a question
+FUNCTION startTimer(questionNumber)
+    PRINT "Question ", questionNumber, " started."
+    
+    FOR i FROM 1 TO TIME_PER_QUESTION
+        # Mark slot as passed
+        timeSlots[currentSlot] = 1
+        
+        # Check for warning
+        IF TIME_PER_QUESTION - i <= WARNING_TIME
+            PRINT "Warning! Time almost over for Question ", questionNumber
+        
+        # Wait 1 second
+        WAIT 1 SECOND
+        
+        # Move to next slot (circular)
+        currentSlot = (currentSlot + 1) MOD TIME_PER_QUESTION
+
+    PRINT "Time's up for Question ", questionNumber
+
+# MAIN PROGRAM
+FOR question FROM 1 TO 5
+    CALL startTimer(question)

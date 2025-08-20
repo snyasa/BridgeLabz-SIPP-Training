@@ -1,0 +1,36 @@
+CLASS Doctor
+    ATTRIBUTE name
+    ATTRIBUTE specialization
+
+    METHOD __init__(name, specialization)
+        self.name = name
+        self.specialization = specialization
+
+
+MAIN PROGRAM
+    # Map of department → list of doctors
+    hospital = empty map
+
+    # Add doctors
+    hospital["Heart Department"] = [ Doctor("Dr. A", "Cardiology"),
+                                     Doctor("Dr. C", "Cardiology") ]
+
+    hospital["Brain Department"] = [ Doctor("Dr. B", "Neurology"),
+                                     Doctor("Dr. E", "Cardiology") ]
+
+    hospital["Bone Department"]  = [ Doctor("Dr. D", "Orthopedics") ]
+
+   
+    FOR each department in hospital
+        PRINT department
+        FOR each doctor in hospital[department]
+            PRINT " - " + doctor.name + " (" + doctor.specialization + ")"
+
+   
+    specializationToFind = "Cardiology"
+    PRINT "Doctors with specialization: " + specializationToFind
+
+    FOR each department in hospital
+        FOR each doctor in hospital[department]
+            IF doctor.specialization == specializationToFind
+                PRINT doctor.name + " in " + department

@@ -1,0 +1,30 @@
+
+CLASS Item
+    ATTRIBUTE name
+    ATTRIBUTE price
+
+    METHOD __init__(name, price)
+        self.name = name
+        self.price = price
+
+CLASS ShoppingCart
+    ATTRIBUTE items (List of Item)
+
+    METHOD __init__()
+        items = empty list
+
+    METHOD addItem(item)
+        ADD item to items
+
+    METHOD showCart()
+        FOR each item IN items
+            PRINT item.name, " - ", item.price
+
+
+GENERIC METHOD calculateTotalPrice(List<T> list)
+    total = 0
+    FOR each element in list
+        total += element.price
+    RETURN total
+
+

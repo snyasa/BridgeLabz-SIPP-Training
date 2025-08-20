@@ -1,0 +1,39 @@
+FUNCTION solveMaze(maze, x, y, solution):
+
+ 
+    IF x == N-1 AND y == N-1 AND maze[x][y] == 1 THEN
+        solution[x][y] = 1
+        RETURN true
+
+    
+    IF isSafe(maze, x, y) THEN
+        // Mark current cell as part of solution path
+        solution[x][y] = 1
+
+        // Move Right
+        IF solveMaze(maze, x, y+1, solution) THEN
+            RETURN true
+
+        // Move Down
+        IF solveMaze(maze, x+1, y, solution) THEN
+            RETURN true
+
+        // BACKTRACK: unmark this cell
+        solution[x][y] = 0
+        RETURN false
+    END IF
+
+    RETURN false
+END FUNCTION
+
+FUNCTION isSafe(maze, x, y):
+    RETURN (x >= 0 AND y >= 0 AND x < N AND y < N AND maze[x][y] == 1)
+
+MAIN METHOD:
+    INPUT maze[N][N]  
+    CREATE solution[N][N] initialized with 0
+
+    IF solveMaze(maze, 0, 0, solution) == true
+        PRINT solution matrix (path shown as 1’s)
+    ELSE
+        PRINT "No Path Found"

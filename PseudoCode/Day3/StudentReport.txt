@@ -1,0 +1,78 @@
+INTERFACE Searchable {
+    METHOD search(keyword)
+}
+
+INTERFACE Printable {
+    METHOD print()
+}
+
+
+CLASS StudentReport IMPLEMENTS Searchable, Printable {
+    ATTRIBUTE: studentName, rollNumber
+
+    CONSTRUCTOR(name, roll)
+        SET studentName = name
+        SET rollNumber = roll
+
+    METHOD search(keyword)
+        IF keyword == studentName OR keyword == rollNumber
+            PRINT "Student Found: ", studentName
+        ELSE
+            PRINT "No Match Found"
+
+    METHOD print()
+        PRINT "Student Report: ", studentName, rollNumber
+}
+
+
+CLASS TeacherReport IMPLEMENTS Searchable, Printable {
+    ATTRIBUTE: teacherName, subject
+
+    CONSTRUCTOR(name, subject)
+        SET teacherName = name
+        SET this.subject = subject
+
+    METHOD search(keyword)
+        IF keyword == teacherName OR keyword == subject
+            PRINT "Teacher Found: ", teacherName
+        ELSE
+            PRINT "No Match Found"
+
+    METHOD print()
+        PRINT "Teacher Report: ", teacherName, subject
+}
+
+
+CLASS LibraryReport IMPLEMENTS Searchable, Printable {
+    ATTRIBUTE: bookTitle, author
+
+    CONSTRUCTOR(title, author)
+        SET bookTitle = title
+        SET this.author = author
+
+    METHOD search(keyword)
+        IF keyword == bookTitle OR keyword == author
+            PRINT "Book Found: ", bookTitle
+        ELSE
+            PRINT "No Match Found"
+
+    METHOD print()
+        PRINT "Library Report: ", bookTitle, author
+}
+
+
+MAIN METHOD {
+    CREATE reports LIST OF Printable AND Searchable
+
+    ADD new StudentReport("Ayushi", 145) TO reports
+    ADD new TeacherReport("Vipin", "Maths") TO reports
+    ADD new LibraryReport("Java Programming", "James") TO reports
+
+    PRINT "--- Printing Reports ---"
+    FOR EACH report IN reports
+        CALL report.print()
+
+    PRINT "--- Searching ---"
+    FOR EACH report IN reports
+        CALL report.search("Ayushi")
+}

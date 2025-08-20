@@ -1,0 +1,52 @@
+INTERFACE PaymentMethod {
+    METHOD processPayment(amount)
+}
+
+
+CLASS UPI IMPLEMENTS PaymentMethod {
+    ATTRIBUTE: upiId
+
+    CONSTRUCTOR(upiId)
+        SET this.upiId = upiId
+
+    METHOD processPayment(amount)
+        PRINT "Processing UPI Payment of " + amount + " via " + upiId
+}
+
+
+CLASS Card IMPLEMENTS PaymentMethod {
+    ATTRIBUTE: cardNumber
+
+    CONSTRUCTOR(cardNumber)
+        SET this.cardNumber = cardNumber
+
+    METHOD processPayment(amount)
+        PRINT "Processing Card Payment of " + amount + " using Card " + cardNumber
+}
+
+
+CLASS NetBanking IMPLEMENTS PaymentMethod {
+    ATTRIBUTE: bankName
+
+    CONSTRUCTOR(bankName)
+        SET this.bankName = bankName
+
+    METHOD processPayment(amount)
+        PRINT "Processing NetBanking Payment of " + amount + " via " + bankName
+}
+
+
+CLASS Transaction<T IMPLEMENTS PaymentMethod> {
+    ATTRIBUTE: transactionId
+    ATTRIBUTE: paymentMethod 
+    ATTRIBUTE: amount
+
+    CONSTRUCTOR(transactionId, paymentMethod, amount)
+        SET this.transactionId = transactionId
+        SET this.paymentMethod = paymentMethod
+        SET this.amount = amount
+
+    METHOD execute()
+        PRINT "Transaction ID: " + transactionId
+        CALL paymentMethod.processPayment(amount)
+}

@@ -1,0 +1,73 @@
+CLASS Flight
+    PROPERTIES:
+        flightNumber
+        airline
+        price
+        duration   // in minutes
+
+    CONSTRUCTOR(flightNumber, airline, price, duration)
+        SET this.flightNumber = flightNumber
+        SET this.airline = airline
+        SET this.price = price
+        SET this.duration = duration
+
+    METHOD display()
+        PRINT "Flight:", flightNumber, " Airline:", airline, 
+              " Price:", price, " Duration:", duration
+
+
+
+INTERFACE FlightComparator
+    METHOD compare(f1, f2)   // returns -1, 0, 1
+
+
+
+CLASS PriceComparator IMPLEMENTS FlightComparator
+    OVERRIDE METHOD compare(f1, f2)
+        IF f1.price < f2.price RETURN -1
+        ELSE IF f1.price > f2.price RETURN 1
+        ELSE RETURN 0
+
+
+
+
+CLASS DurationComparator IMPLEMENTS FlightComparator
+    OVERRIDE METHOD compare(f1, f2)
+        IF f1.duration < f2.duration RETURN -1
+        ELSE IF f1.duration > f2.duration RETURN 1
+        ELSE RETURN 0
+
+
+
+CLASS FlightSorter
+    METHOD mergeSort(flights[], comparator)
+        IF length of flights <= 1
+            RETURN flights
+
+        mid = length/2
+        left = mergeSort(flights[0..mid-1], comparator)
+        right = mergeSort(flights[mid..end], comparator)
+
+        RETURN merge(left, right, comparator)
+
+    METHOD merge(left[], right[], comparator)
+        result = empty list
+        i = j = 0
+
+        WHILE i < length(left) AND j < length(right)
+            IF comparator.compare(left[i], right[j]) <= 0
+                ADD left[i] to result
+                i++
+            ELSE
+                ADD right[j] to result
+                j++
+
+        WHILE i < length(left)
+            ADD left[i] to result
+            i++
+
+        WHILE j < length(right)
+            ADD right[j] to result
+            j++
+
+        RETURN result

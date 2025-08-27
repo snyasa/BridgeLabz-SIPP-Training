@@ -1,0 +1,40 @@
+CLASS Member{
+Attributes:
+name
+ID
+membership date
+
+Constructor(name,ID,date)
+Set this.name=name
+Set this.ID=ID
+Set date=date
+
+ METHOD displayDetails()
+        PRINT name, id, date
+}
+CLASS Teacher extends Member{
+   Constuctor(name,ID,date)
+   Call super(name,ID,date)
+
+   METHOD displayDetails()
+        CALL super.displayDetails()
+ }
+CLASS Student extends Member{
+  Constuctor(name,ID,date)
+  Call super(name,ID,date)
+
+ METHOD displayDetails()
+        CALL super.displayDetails()
+ }
+MAIN METHOD{
+    CREATE teacher OBJECT OF Teacher("Vipin, 3, "10 August 2025);
+    CREATE student OBJECT OF Student("Ayushi", 145, "Female", "White")
+ 
+    PRINT "--- Member Details ---"
+    CALL teacher.displayDetails()
+    CALL student.displayDetails()
+}
+
+
+
+  

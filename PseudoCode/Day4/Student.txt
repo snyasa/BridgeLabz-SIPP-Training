@@ -1,0 +1,46 @@
+CLASS Student
+    PROPERTIES:
+        id
+        name
+
+    CONSTRUCTOR(id, name)
+        SET this.id = id
+        SET this.name = name
+
+    METHOD display()
+        PRINT "Student ID:", id, " Name:", name
+
+
+CLASS Course
+    PROPERTIES:
+        code
+        title
+
+    CONSTRUCTOR(code, title)
+        SET this.code = code
+        SET this.title = title
+
+    METHOD display()
+        PRINT "Course:", code, "-", title
+
+
+
+CLASS CourseRegistry
+    PROPERTY courseMap   
+   List<Student>>
+
+    CONSTRUCTOR()
+        INITIALIZE courseMap as empty map
+
+    METHOD addStudentToCourse(course, student)
+        IF course NOT in courseMap
+            courseMap[course] = new empty list
+        ADD student to courseMap[course]
+
+    METHOD displayStudentsPerCourse()
+        FOR each (course, studentList) in courseMap
+            course.display()
+            PRINT "Enrolled Students:"
+            FOR each student IN studentList
+                student.display()
+            PRINT 

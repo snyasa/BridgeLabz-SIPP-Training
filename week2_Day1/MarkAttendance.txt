@@ -1,0 +1,23 @@
+START
+
+Initialize ATTENDANCE[NUM_STUDENTS][NUM_DAYS] as 2D array
+
+FUNCTION MarkAttendance(student, day, status):
+    ATTENDANCE[student][day] = status
+END FUNCTION
+
+FUNCTION UpdateAttendance(student, day, newStatus):
+    ATTENDANCE[student][day] = newStatus
+END FUNCTION
+
+FUNCTION GenerateReport():
+    FOR each student from 1 to NUM_STUDENTS:
+        presentCount = 0
+        FOR each day from 1 to NUM_DAYS:
+            IF ATTENDANCE[student][day] == 'P':
+                presentCount = presentCount + 1
+            ENDIF
+        ENDFOR
+        PRINT "Student", student, "was present", presentCount, "days this month"
+    ENDFOR
+END FUNCTION

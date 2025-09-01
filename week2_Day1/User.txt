@@ -1,0 +1,32 @@
+CLASS User:
+    ATTRIBUTES:
+        username
+        password
+    
+    METHOD login():
+        PRINT "Base login method (generic user)"
+END CLASS
+
+
+CLASS Student EXTENDS User:
+    ATTRIBUTES:
+        enrolledCourse
+    
+    METHOD login():
+        IF username and password are valid AND enrolledCourse is not empty:
+            PRINT "Student login successful. Exams available."
+        ELSE:
+            PRINT "Student login failed. Check credentials or enrollment."
+END CLASS
+
+
+CLASS Admin EXTENDS User:
+    ATTRIBUTES:
+        role
+    
+    METHOD login():
+        IF username and password are valid AND role == "admin":
+            PRINT "Admin login successful. Exam management tools available."
+        ELSE:
+            PRINT "Admin login failed. Invalid credentials or no admin privileges."
+END CLASS

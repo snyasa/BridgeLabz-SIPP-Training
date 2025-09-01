@@ -1,0 +1,26 @@
+START
+
+Initialize TASKS as LinkedHashMap<Integer, String>
+Initialize taskId = 0
+
+FUNCTION AddTask(description):
+    taskId = taskId + 1
+    TASKS.put(taskId, description)
+    PRINT "Task added:", taskId, "→", description
+END FUNCTION
+
+FUNCTION RemoveTask(id):
+    IF TASKS contains id:
+        TASKS.remove(id)
+        PRINT "Task", id, "removed."
+    ELSE:
+        PRINT "Task ID not found."
+    ENDIF
+END FUNCTION
+
+FUNCTION ViewTasks():
+    PRINT "Pending Tasks:"
+    FOR each (id, description) in TASKS:
+        PRINT id, "→", description
+    ENDFOR
+END FUNCTION

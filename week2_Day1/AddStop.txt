@@ -1,0 +1,73 @@
+START
+
+Create empty linked list called Route
+
+FUNCTION AddStop(stop):
+    Create new node with stop
+    If Route is empty:
+        head = new node
+    Else:
+        Traverse to last node
+        Link last node to new node
+    EndIf
+END FUNCTION
+
+FUNCTION InsertAfter(existingStop, newStop):
+    Find node with existingStop
+    If found:
+        Create new node with newStop
+        Link new node after existingStop node
+    Else:
+        Print "Stop not found"
+    EndIf
+END FUNCTION
+
+FUNCTION RemoveStop(stop):
+    If Route is empty:
+        RETURN
+    EndIf
+    If head stop is stop:
+        Move head to next
+        RETURN
+    EndIf
+    Traverse list until stop is found
+    If found:
+        Remove it by changing links
+    Else:
+        Print "Stop not found"
+END FUNCTION
+
+FUNCTION SearchStop(stop):
+    Traverse list
+    If stop found:
+        RETURN true
+    Else:
+        RETURN false
+END FUNCTION
+
+FUNCTION DisplayRoute():
+    Traverse list from head
+    Print each stop → next stop
+END FUNCTION
+
+MAIN:
+    AddStop(Depot)
+    AddStop(Main Street)
+    AddStop(City Mall)
+    AddStop(Hospital)
+    AddStop(Airport)
+
+    DisplayRoute()
+
+    InsertAfter(City Mall, University)
+    DisplayRoute()
+
+    RemoveStop(Hospital)
+    DisplayRoute()
+
+    If SearchStop(Airport):
+        Print "Airport is in the route"
+    Else:
+        Print "Airport is NOT in the route"
+
+END

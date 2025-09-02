@@ -1,0 +1,38 @@
+CLASS SurveyResponse
+    ATTRIBUTES:
+        restaurantName
+        rating
+
+CLASS SurveyReportGenerator
+    ATTRIBUTES:
+        responses = List<SurveyResponse>
+        reportMap = empty Map<String, Double>
+
+    METHOD generateReport()
+        reportMap = group responses by restaurantName
+                     AND calculate average rating per restaurant
+
+    METHOD highestRatedRestaurant()
+        maxRating = 0
+        result = ""
+        FOR each entry in reportMap
+            IF entry.value > maxRating
+                maxRating = entry.value
+                result = entry.key
+        RETURN result
+
+    METHOD lowestRatedRestaurant()
+        minRating = infinity
+        result = ""
+        FOR each entry in reportMap
+            IF entry.value < minRating
+                minRating = entry.value
+                result = entry.key
+        RETURN result
+
+
+MAIN
+    generator = SurveyReportGenerator()
+    generator.generateReport()
+    PRINT "Highest Rated:", generator.highestRatedRestaurant()
+    PRINT "Lowest Rated:", generator.lowestRatedRestaurant()

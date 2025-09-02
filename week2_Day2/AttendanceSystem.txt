@@ -1,0 +1,29 @@
+CLASS AttendanceSystem
+    ATTRIBUTES:
+        attendance[30][30]
+
+    METHOD markAttendance(studentId, day, status)
+        attendance[studentId][day] = status
+
+    METHOD dailySummary(day)
+        count = 0
+        FOR i = 0 TO 29
+            IF attendance[i][day] == 1
+                count = count + 1
+        RETURN count
+
+    METHOD monthlySummary(studentId)
+        total = 0
+        FOR j = 0 TO 29
+            total = total + attendance[studentId][j]
+        RETURN total
+
+    METHOD defaulterList()
+        FOR i = 0 TO 29
+            totalDays = monthlySummary(i)
+            IF totalDays < 22
+                PRINT "Student", i+1, "is a defaulter"
+
+
+MAIN
+    system = AttendanceSystem()

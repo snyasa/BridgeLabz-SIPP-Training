@@ -1,0 +1,34 @@
+CLASS Vehicle
+    ATTRIBUTES:
+        vehicleNumber
+        entryTime
+    
+    METHOD calculateFee(exitTime)
+        RETURN 0
+
+
+CLASS Car EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        duration = ceil(exitTime - entryTime in hours)
+        fee = 50
+        IF duration > 1
+            fee = fee + (duration - 1) * 30
+        RETURN fee
+
+
+CLASS Bike EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        duration = ceil(exitTime - entryTime in hours)
+        fee = 20
+        IF duration > 1
+            fee = fee + (duration - 1) * 10
+        RETURN fee
+
+
+CLASS Truck EXTENDS Vehicle
+    METHOD calculateFee(exitTime)
+        duration = ceil(exitTime - entryTime in hours)
+        fee = 100
+        IF duration > 1
+            fee = fee + (duration - 1) * 50
+        RETURN fee

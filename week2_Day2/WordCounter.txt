@@ -1,0 +1,38 @@
+CLASS WordCounter
+    ATTRIBUTES:
+        text
+        wordMap = empty Map<String, Integer>
+
+    METHOD processText()
+        words = split text into words
+        FOR each word in words
+            word = normalize(word)   // lowercase, remove punctuation
+            IF wordMap contains word
+                wordMap[word] = wordMap[word] + 1
+            ELSE
+                wordMap[word] = 1
+
+    METHOD wordFrequency(word)
+        IF wordMap contains word
+            RETURN wordMap[word]
+        ELSE
+            RETURN 0
+
+    METHOD mostFrequentWord()
+        maxCount = 0
+        result = ""
+        FOR each entry in wordMap
+            IF entry.value > maxCount
+                maxCount = entry.value
+                result = entry.key
+        RETURN result
+
+    METHOD rarelyUsedWords(threshold)
+        FOR each entry in wordMap
+            IF entry.value <= threshold
+                PRINT entry.key
+
+
+MAIN
+    counter = WordCounter()
+    counter.processText()

@@ -1,0 +1,50 @@
+CLASS User
+    ATTRIBUTES:
+        username
+        password
+    
+    METHOD login()
+        PRINT "Base login validation"
+        RETURN true
+
+
+CLASS Student EXTENDS User
+    ATTRIBUTES:
+        isRegistered
+        isEnrolled
+    
+    METHOD login()
+        IF validateCredentials(username, password) AND isRegistered AND isEnrolled
+            PRINT "Student login successful"
+            RETURN true
+        ELSE
+            PRINT "Student login failed"
+            RETURN false
+
+
+CLASS Admin EXTENDS User
+    ATTRIBUTES:
+        hasAdminPrivileges
+    
+    METHOD login()
+        IF validateCredentials(username, password) AND hasAdminPrivileges
+            PRINT "Admin login successful"
+            RETURN true
+        ELSE
+            PRINT "Admin login failed"
+            RETURN false
+
+
+FUNCTION validateCredentials(username, password)
+    RETURN true
+
+
+MAIN
+    studentUser = Student("john123", "abc123", true, true)
+    adminUser = Admin("admin01", "secure@123", true)
+
+    userRef = studentUser
+    userRef.login()
+
+    userRef = adminUser
+    userRef.login()

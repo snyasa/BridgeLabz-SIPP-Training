@@ -1,0 +1,51 @@
+CLASS Node
+    ATTRIBUTES:
+        stopName
+        next
+
+
+CLASS BusRoute
+    ATTRIBUTES:
+        head
+
+    METHOD insertAfter(targetStop, newStop)
+        current = head
+        WHILE current != null
+            IF current.stopName == targetStop
+                newNode = Node(newStop)
+                newNode.next = current.next
+                current.next = newNode
+                RETURN
+            current = current.next
+
+    METHOD delete(stopName)
+        current = head
+        prev = null
+        WHILE current != null
+            IF current.stopName == stopName
+                IF prev == null
+                    head = current.next
+                ELSE
+                    prev.next = current.next
+                RETURN
+            prev = current
+            current = current.next
+
+    METHOD search(stopName)
+        current = head
+        WHILE current != null
+            IF current.stopName == stopName
+                RETURN true
+            current = current.next
+        RETURN false
+
+    METHOD display()
+        current = head
+        WHILE current != null
+            PRINT current.stopName
+            IF current.next != null
+                PRINT " → "
+            current = current.next
+        PRINT new line
+
+
